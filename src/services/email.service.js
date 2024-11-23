@@ -17,6 +17,12 @@ const createEmail = async (emailData) => {
   return newRecord;
 };
 
+const queryEmails = async (filter, options) => {
+  const emails = await Email.find(filter, options);
+
+  return emails;
+};
+
 /**
  * Send an email
  * @param {string} to
@@ -64,6 +70,7 @@ If you did not create an account, then ignore this email.`;
 module.exports = {
   transport,
   createEmail,
+  queryEmails,
   sendEmail,
   sendResetPasswordEmail,
   sendVerificationEmail,
