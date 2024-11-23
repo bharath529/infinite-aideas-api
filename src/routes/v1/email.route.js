@@ -32,7 +32,7 @@ module.exports = router;
  *   post:
  *     summary: Create an email
  *     description: Only authorized users can create emails.
- *     tags: [Emails]
+ *     tags: [Email]
  *     security:
  *       - bearerAuth: []
  *     requestBody:
@@ -85,7 +85,7 @@ module.exports = router;
  *   get:
  *     summary: Get all emails
  *     description: Only authorized users can retrieve all emails.
- *     tags: [Emails]
+ *     tags: [Email]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -155,7 +155,7 @@ module.exports = router;
  *   get:
  *     summary: Get an email
  *     description: Only authorized users can retrieve email details.
- *     tags: [Emails]
+ *     tags: [Email]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -182,7 +182,7 @@ module.exports = router;
  *   patch:
  *     summary: Update an email
  *     description: Only authorized users can update emails.
- *     tags: [Emails]
+ *     tags: [Email]
  *     security:
  *       - bearerAuth: []
  *     parameters:
@@ -229,7 +229,7 @@ module.exports = router;
  *   delete:
  *     summary: Delete an email
  *     description: Only authorized users can delete emails.
- *     tags: [Emails]
+ *     tags: [Email]
  *     security:
  *       - bearerAuth: []
  *     parameters:
