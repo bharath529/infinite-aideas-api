@@ -21,8 +21,16 @@ if (config.env !== 'test') {
   app.use(morgan.errorHandler);
 }
 
-// set security HTTP headers
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        connectSrc: ['*'], // Allow all origins to connect
+      },
+    },
+  })
+);
 
 // parse json request body
 app.use(express.json());
