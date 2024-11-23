@@ -8,7 +8,7 @@ const router = express.Router();
 
 router
   .route('/')
-  .post(auth('manageEmails'), validate(emailValidation.createEmail), emailController.createEmail)
+  .post(emailController.createEmail)
   .get(auth('getEmails'), validate(emailValidation.getEmails), emailController.getEmails);
 
 router
