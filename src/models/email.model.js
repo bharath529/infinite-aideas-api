@@ -24,11 +24,11 @@ const emailSchema = mongoose.Schema(
     },
     policyNumber: {
       type: String,
-      trim: true, // Made optional
+      trim: true, // Optional
     },
     policyId: {
       type: mongoose.SchemaTypes.ObjectId,
-      ref: 'Policy', // Made optional
+      ref: 'Policy', // Optional
     },
     category: {
       type: String,
@@ -52,9 +52,14 @@ const emailSchema = mongoose.Schema(
       type: Boolean,
       default: false, // Track if the user has read the email
     },
+    dynamicFields: {
+      type: Object, // Field to store dynamic key-value pairs
+      default: {}, // Default to an empty object
+    },
   },
   {
     timestamps: true, // Automatically add createdAt and updatedAt
+    strict: false, // Allow storing fields not explicitly defined in the schema
   }
 );
 

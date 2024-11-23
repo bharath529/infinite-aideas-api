@@ -22,13 +22,13 @@ module.exports = router;
 /**
  * @swagger
  * tags:
- *   name: Emails
+ *   name: Email
  *   description: Email management and retrieval
  */
 
 /**
  * @swagger
- * /emails:
+ * /email:
  *   post:
  *     summary: Create an email
  *     description: Only authorized users can create emails.
@@ -151,7 +151,7 @@ module.exports = router;
 
 /**
  * @swagger
- * /emails/{emailId}:
+ * /email/{emailId}:
  *   get:
  *     summary: Get an email
  *     description: Only authorized users can retrieve email details.

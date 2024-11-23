@@ -2,7 +2,6 @@ const express = require('express');
 const authRoute = require('./auth.route');
 const userRoute = require('./user.route');
 const docsRoute = require('./docs.route');
-const config = require('../../config/config');
 const emailRoute = require('./email.route');
 const policyRoute = require('./policy.route');
 
@@ -18,11 +17,11 @@ const defaultRoutes = [
     route: userRoute,
   },
   {
-    path: 'email',
+    path: '/email',
     route: emailRoute,
   },
   {
-    path: 'policy',
+    path: '/policy',
     route: policyRoute,
   },
 ];
