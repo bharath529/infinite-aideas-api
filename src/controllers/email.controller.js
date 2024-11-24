@@ -8,13 +8,7 @@ const createEmail = catchAsync(async (req, res) => {
 });
 
 const getEmails = catchAsync(async (req, res) => {
-  const filter = { ...req.query };
-  const options = {
-    limit: req.query.limit || 10,
-    page: req.query.page || 1,
-    sortBy: req.query.sortBy || 'createdAt:desc',
-  };
-  const result = await emailService.queryEmails(filter, options);
+  const result = await emailService.queryEmails(req);
   res.send(result);
 });
 

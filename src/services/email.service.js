@@ -185,8 +185,15 @@ const createEmail = async (emailData) => {
   return newRecord; // Return the created email record
 };
 
-const queryEmails = async () => {
+const queryEmails = async (req) => {
+  const { user } = req;
+  const matchStage =
+    user.role === 'admin'
+      ? {} // No filter for admin
+      : { senderEmail: user.email }; 
   const emails = await Email.aggregate([
+    // Match based on user role
+    { $match: matchStage },
     {
       $lookup: {
         from: 'users', // Name of the users collection
@@ -199,6 +206,11 @@ const queryEmails = async () => {
       $unwind: {
         path: '$userDetails',
         preserveNullAndEmptyArrays: true, // Allow emails without a matching user
+      },
+    },
+    {
+      $sort: {
+        createdAt: -1, // Sort by createdAt in descending order
       },
     },
     {
@@ -219,6 +231,7 @@ const queryEmails = async () => {
       },
     },
   ]);
+
   return emails;
 };
 
