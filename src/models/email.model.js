@@ -31,8 +31,7 @@ const emailSchema = mongoose.Schema(
     },
     category: {
       type: String,
-      enum: ['enquire', 'claim', 'feedback', 'others'],
-      default: 'others', // Default value
+      default: 'claim', // Default value
     },
     status: {
       type: String,

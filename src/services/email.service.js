@@ -219,7 +219,6 @@ const queryEmails = async () => {
       },
     },
   ]);
-
   return emails;
 };
 
