@@ -28,7 +28,7 @@ const getEmail = catchAsync(async (req, res) => {
 });
 
 const updateEmail = catchAsync(async (req, res) => {
-  const email = await emailService.updateEmailById(req.params.emailId, req.body);
+  const email = await emailService.updateEmailStatus(req.params.id, req.body.status);
   res.send(email);
 });
 

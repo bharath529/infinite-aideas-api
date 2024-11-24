@@ -36,8 +36,8 @@ const emailSchema = mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ['new', 'in_progress', 'resolved', 'blocked', 'ignored'],
-      default: 'new', // Default value
+      enum: ['new', 'in_progress', 'resolved', 'blocked', 'ignored', 'approved', 'rejected', 'on hold', 'done'],
+      default: 'in_progress', // Default value
     },
     priority: {
       type: String,

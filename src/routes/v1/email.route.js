@@ -12,7 +12,7 @@ router
   .get(auth('getEmails'), validate(emailValidation.getEmails), emailController.getEmails);
 
 router
-  .route('/:emailId')
+  .route('/:id')
   .get(auth('getEmails'), validate(emailValidation.getEmail), emailController.getEmail)
   .patch(auth('manageEmails'), validate(emailValidation.updateEmail), emailController.updateEmail)
   .delete(auth('manageEmails'), validate(emailValidation.deleteEmail), emailController.deleteEmail);
@@ -151,7 +151,7 @@ module.exports = router;
 
 /**
  * @swagger
- * /email/{emailId}:
+ * /email/{id}:
  *   get:
  *     summary: Get an email
  *     description: Only authorized users can retrieve email details.
@@ -160,11 +160,11 @@ module.exports = router;
  *       - bearerAuth: []
  *     parameters:
  *       - in: path
- *         name: emailId
+ *         name: id
  *         required: true
  *         schema:
  *           type: string
- *         description: Email ID
+ *         description: ID
  *     responses:
  *       "200":
  *         description: OK
@@ -187,11 +187,11 @@ module.exports = router;
  *       - bearerAuth: []
  *     parameters:
  *       - in: path
- *         name: emailId
+ *         name: id
  *         required: true
  *         schema:
  *           type: string
- *         description: Email ID
+ *         description: ID
  *     requestBody:
  *       required: true
  *       content:
@@ -199,17 +199,10 @@ module.exports = router;
  *           schema:
  *             type: object
  *             properties:
- *               subject:
+ *               status:
  *                 type: string
- *               emailBody:
- *                 type: string
- *               category:
- *                 type: string
- *                 enum: [enquire, claim, feedback, others]
  *             example:
- *               subject: "Updated Subject"
- *               emailBody: "Updated email content."
- *               category: "feedback"
+ *               status: "accepted"
  *     responses:
  *       "200":
  *         description: OK
