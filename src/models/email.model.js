@@ -31,16 +31,16 @@ const emailSchema = mongoose.Schema(
     },
     category: {
       type: String,
-      default: 'claim', // Default value
+      default: 'inquiry', // Default value
     },
     status: {
       type: String,
-      enum: ['new', 'in_progress', 'resolved', 'blocked', 'ignored', 'approved', 'rejected', 'on hold', 'done'],
+      // enum: ['new', 'in_progress', 'resolved', 'blocked', 'ignored', 'approved', 'rejected', 'on hold', 'done'],
       default: 'in_progress', // Default value
     },
     priority: {
       type: String,
-      enum: ['high', 'medium', 'low'],
+      // enum: ['high', 'medium', 'low'],
       default: 'medium',
     },
     attachments: {
