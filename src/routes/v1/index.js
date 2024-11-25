@@ -4,6 +4,7 @@ const userRoute = require('./user.route');
 const docsRoute = require('./docs.route');
 const emailRoute = require('./email.route');
 const policyRoute = require('./policy.route');
+const userController = require('../../controllers/user.controller');
 
 const router = express.Router();
 
@@ -42,5 +43,7 @@ defaultRoutes.forEach((route) => {
 devRoutes.forEach((route) => {
   router.use(route.path, route.route);
 });
+
+router.get('/dashboard', userController.getDashboard);
 
 module.exports = router;

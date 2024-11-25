@@ -1,5 +1,5 @@
 const httpStatus = require('http-status');
-const { User } = require('../models');
+const { User, Email } = require('../models');
 const ApiError = require('../utils/ApiError');
 
 /**
@@ -79,6 +79,44 @@ const deleteUserById = async (userId) => {
   return user;
 };
 
+const getDashboardData = async () => {
+  // Aggregate data for emails and users
+  try {
+    // Count emails by category
+    const emailsByCategory = await Email.aggregate([{ $group: { _id: '$category', count: { $sum: 1 } } }]);
+
+    // Count emails by status
+    const emailsByStatus = await Email.aggregate([{ $group: { _id: '$status', count: { $sum: 1 } } }]);
+
+    // Count emails by priority
+    const emailsByPriority = await Email.aggregate([{ $group: { _id: '$priority', count: { $sum: 1 } } }]);
+
+    // Recent emails
+    const recentEmails = await Email.find({})
+      .sort({ createdAt: -1 })
+      .limit(10)
+      .select('subject senderEmail status category createdAt priority');
+
+    // Pending actions (emails in "new" or "in_progress" state)
+    const pendingEmails = await Email.find({ status: { $in: ['new', 'in_progress'] } }).countDocuments();
+
+    // Total users
+    const totalUsers = await User.countDocuments();
+
+    // Returning dashboard summary
+    return {
+      emailsByCategory,
+      emailsByStatus,
+      emailsByPriority,
+      recentEmails,
+      pendingEmails,
+      totalUsers,
+    };
+  } catch (error) {
+    throw new Error('Failed to fetch dashboard data');
+  }
+};
+
 module.exports = {
   createUser,
   queryUsers,
@@ -86,4 +124,5 @@ module.exports = {
   getUserByEmail,
   updateUserById,
   deleteUserById,
+  getDashboardData,
 };
