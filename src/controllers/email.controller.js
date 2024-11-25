@@ -13,7 +13,7 @@ const getEmails = catchAsync(async (req, res) => {
 });
 
 const getEmail = catchAsync(async (req, res) => {
-  const email = await emailService.getEmailById(req.params.emailId);
+  const email = await emailService.getEmailById(req.params.id);
   if (!email) {
     res.status(httpStatus.NOT_FOUND).send({ message: 'Email not found' });
     return;
