@@ -1,6 +1,6 @@
 const httpStatus = require('http-status');
 const catchAsync = require('../utils/catchAsync');
-const { emailService } = require('../services');
+const { emailService, userService } = require('../services');
 
 const createEmail = catchAsync(async (req, res) => {
   const email = await emailService.createEmail(req.body);
@@ -18,6 +18,8 @@ const getEmail = catchAsync(async (req, res) => {
     res.status(httpStatus.NOT_FOUND).send({ message: 'Email not found' });
     return;
   }
+  const user = await userService.getUserByEmail(email.senderEmail);
+  email.user = user;
   res.send(email);
 });
 
